@@ -39,6 +39,7 @@ const ToppingsSelect = ({ toppings }) => {
             onChange={(newCount) => handleClick(index, newCount)}
             topping={topping}
             key={topping.name}
+            index={index}
           />
         ))}
       </div>
