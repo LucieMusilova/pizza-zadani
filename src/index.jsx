@@ -67,6 +67,8 @@ const toppings = [
 ];
 
 const App = () => {
+  toppings.forEach((topping) => {topping.check = false});
+
   return (
     <div className="container">
       <header>
