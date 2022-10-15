@@ -71,7 +71,8 @@ const App = () => {
   toppings.forEach((topping) => {
     topping.check = false;
   });
-  const [veganOnly, setVeganOnly] = useState([toppings.map((topping) => topping.vegan)]);
+  const [veganOnly, setVeganOnly] = useState(toppings.map((topping) => topping.vegan));
+  console.log(veganOnly)
   
   return (
     <SettingsContext.Provider value={{ veganOnly }}>

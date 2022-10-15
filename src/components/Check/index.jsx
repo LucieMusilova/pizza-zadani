@@ -4,7 +4,6 @@ import { usePrefs } from "../../settings-context";
 
 const Check = ({checked, onChange, index}) => {
   const { veganOnly} = usePrefs();
-  console.log(veganOnly[index])
 
   const handleClick = () => {
     onChange(checked);
