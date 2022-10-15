@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { SettingsContext } from "./settings-context";
 import ToppingsSelect from "./components/ToppingsSelect";
 import "./style.css";
+import Header from "./components/Header";
 
 const toppings = [
   {
@@ -68,19 +69,36 @@ const toppings = [
 ];
 
 const App = () => {
-  toppings.forEach((topping) => {
-    topping.check = false;
-  });
   const [veganOnly, setVeganOnly] = useState(toppings.map((topping) => topping.vegan));
-  console.log(veganOnly)
+  const [allChecked, setAllChecked] = useState(false);
+  const [vegChecked, setVegChecked] = useState(false);
+
+  toppings.forEach((topping) => {
+    if(allChecked){
+      topping.check = true;
+    } else if(vegChecked && topping.vegan === true) {
+        topping.check = true;
+    } else topping.check = false;
+  });
+
+  const checkAll = () => {
+    setAllChecked(!allChecked);
+    setVegChecked(false);
+  };
+
+  const checkVege = () => {
+    setVegChecked(!vegChecked);
+    setAllChecked(false);
+  };
   
   return (
-    <SettingsContext.Provider value={{ veganOnly }}>
+    <SettingsContext.Provider value={{ veganOnly, allChecked, vegChecked, checkAll, checkVege }}>
       <div className="container">
         <header>
           <div className="pizza" />
           <h1>Build your own pizza</h1>
         </header>
+        <Header />
         <main>
           <ToppingsSelect toppings={toppings} />
         </main>
