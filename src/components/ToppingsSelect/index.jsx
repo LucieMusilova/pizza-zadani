@@ -5,9 +5,9 @@ import "./style.css";
 const ToppingsSelect = ({ toppings }) => {
   const [checked, setChecked] = useState(toppings);
 
-  const handleClick = (index, newCount) => {
+  const handleClick = (index, selected) => {
     const newChecks = [...checked];
-    newChecks[index].check = !newCount;
+    newChecks[index].check = !selected;
     setChecked(newChecks);
   };
 
@@ -36,7 +36,7 @@ const ToppingsSelect = ({ toppings }) => {
         {toppings.map((topping, index) => (
           <Topping
             checked={topping.check}
-            onChange={(newCount) => handleClick(index, newCount)}
+            onChange={(newSelect) => handleClick(index, newSelect)}
             topping={topping}
             key={topping.name}
             index={index}

@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css';
+import "./style.css";
 import { usePrefs } from "../../settings-context";
 
 const Header = () => {
@@ -8,12 +8,22 @@ const Header = () => {
   return (
     <div className="choose">
       <div className="choose-div">
-          <input onChange={checkAll} type="checkbox" name="all" checked={allChecked}/>
-          <label htmlFor="all"> I want all ingredients</label>
+        <input
+          onChange={checkAll}
+          type="radio"
+          name="all"
+          checked={allChecked}
+        />
+        <label htmlFor="all"> I want all ingredients</label>
       </div>
       <div className="choose-div">
-          <input onChange={checkVege} type="checkbox" name="vege" checked={vegChecked}/>
-          <label htmlFor="vege"> I just want veggie ingredients</label>
+        <input
+          onChange={checkVege}
+          type="radio"
+          name="vege"
+          checked={vegChecked}
+        />
+        <label htmlFor="vege"> I just want veggie ingredients</label>
       </div>
     </div>
   );

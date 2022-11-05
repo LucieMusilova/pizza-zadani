@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
-import { SettingsContext } from "./settings-context";
+import { PrefsContext } from "./settings-context";
 import ToppingsSelect from "./components/ToppingsSelect";
 import "./style.css";
 import Header from "./components/Header";
@@ -69,30 +69,32 @@ const toppings = [
 ];
 
 const App = () => {
-  const [veganOnly, setVeganOnly] = useState(toppings.map((topping) => topping.vegan));
-  const [allChecked, setAllChecked] = useState(false);
+  const [veganOnly, setVeganOnly] = useState(false);
+  const [allChecked, setAllChecked] = useState(true);
   const [vegChecked, setVegChecked] = useState(false);
 
-  toppings.forEach((topping) => {
-    if(allChecked){
-      topping.check = true;
-    } else if(vegChecked && topping.vegan === true) {
-        topping.check = true;
-    } else topping.check = false;
-  });
-
   const checkAll = () => {
-    setAllChecked(!allChecked);
+    setAllChecked(true);
     setVegChecked(false);
+    setVeganOnly(false);
   };
 
   const checkVege = () => {
-    setVegChecked(!vegChecked);
+    setVegChecked(true);
     setAllChecked(false);
+    setVeganOnly(true);
   };
-  
+
   return (
-    <SettingsContext.Provider value={{ veganOnly, allChecked, vegChecked, checkAll, checkVege }}>
+    <PrefsContext.Provider
+      value={{
+        veganOnly,
+        allChecked,
+        vegChecked,
+        checkAll,
+        checkVege,
+      }}
+    >
       <div className="container">
         <header>
           <div className="pizza" />
@@ -103,7 +105,7 @@ const App = () => {
           <ToppingsSelect toppings={toppings} />
         </main>
       </div>
-    </SettingsContext.Provider>
+    </PrefsContext.Provider>
   );
 };
 

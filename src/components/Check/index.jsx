@@ -1,22 +1,23 @@
 import React from "react";
-import './style.css';
+import "./style.css";
 import { usePrefs } from "../../settings-context";
 
-const Check = ({checked, onChange, index}) => {
-  const { veganOnly} = usePrefs();
+const Check = ({ checked, onChange, disabled }) => {
+  const { veganOnly } = usePrefs();
 
   const handleClick = () => {
     onChange(checked);
   };
-  
+
   return (
-    <button 
-      className={veganOnly[index] ? "check" : "check--disabled"}
+    <button
+      className={veganOnly && !disabled ? "check check--disabled" : "check"}
       onClick={handleClick}
+      disabled={veganOnly && !disabled}
     >
-      {checked ? '✓' : ''}
+      {checked ? "✓" : ""}
     </button>
-  )
+  );
 };
 
 export default Check;

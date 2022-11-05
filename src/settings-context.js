@@ -1,5 +1,5 @@
-import React, { createContext,  useContext } from 'react';
+import React, { createContext, useContext } from "react";
 
-export const SettingsContext = createContext();
+export const PrefsContext = createContext();
 
-export const usePrefs = () => useContext(SettingsContext);
+export const usePrefs = () => useContext(PrefsContext);
